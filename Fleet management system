@@ -1,0 +1,50 @@
+class Car:
+    def __init__(self, brand, model, year):
+        self.brand = brand
+        self.model = model
+        self.year = year
+
+class Fleet:
+    def __init__(self):
+        self.cars = []
+
+    def add_car(self, car):
+        self.cars.append(car)
+
+    def remove_car(self, car):
+        if car in self.cars:
+            self.cars.remove(car)
+        else:
+            print(f"{car.brand} {car.model} is not in the fleet.")
+
+    def get_cars_by_brand(self, brand):
+        return [car for car in self.cars if car.brand == brand]
+
+    def get_cars_by_year(self, year):
+        return [car for car in self.cars if car.year == year]
+
+# Example usage
+if __name__ == "__main__":
+    my_fleet = Fleet()
+
+    car1 = Car("Toyota", "Camry", 2020)
+    car2 = Car("Honda", "Civic", 2019)
+    car3 = Car("Ford", "Focus", 2021)
+
+    my_fleet.add_car(car1)
+    my_fleet.add_car(car2)
+    my_fleet.add_car(car3)
+
+    print("All cars in the fleet:")
+    for car in my_fleet.cars:
+        print(f"{car.brand} {car.model} ({car.year})")
+
+    print("\nCars by brand (Toyota):")
+    toyota_cars = my_fleet.get_cars_by_brand("Toyota")
+    for car in toyota_cars:
+        print(f"{car.model} ({car.year})")
+
+    my_fleet.remove_car(car2)
+    print("\nRemaining cars in the fleet:")
+    for car in my_fleet.cars:
+        print(f"{car.brand} {car.model} ({car.year})")
